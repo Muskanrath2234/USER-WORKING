@@ -1,0 +1,35 @@
+{% block title %}Search_Room{% endblock %}
+{% load static %}
+{% block style %}
+ 
+{% endblock %}
+{% block content %}
+   
+    <h1 class="text-center">Available Rooms</h1>
+    <p>Start Date: {{ start_date }}</p>
+    <p>Room Type: {{ room_type }}</p>
+
+    <div class="container">
+        <div class="row">
+            {% for room in available_rooms %}
+            <div class="col-sm-12 col-md-4 col-lg-4 col-12 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Room Number: {{ room.room_number }}</h5>
+                        <p class="card-text">Available Seats: {{ room.available_seat }}</p>
+                        <p class="card-text">Type: {{ room.get_type_display }}</p>
+                        <p class="card-text">Available Date: {{ room.available_date }}</p>
+                        <p class="card-text">Floor: {{ room.floor }}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col">
+                <div class="alert alert-warning" role="alert">
+                    No rooms available for the selected criteria.
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

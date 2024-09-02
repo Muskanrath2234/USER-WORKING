@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Add Room{% endblock %}
+
+{% block content %}
+    <section class="services py-5">
+        <div class="container d-flex justify-content-center">
+            <div class="card card-custom shadow-sm">
+                <div class="card-body">
+                    <h2 class="text-center mt-5 mb-4">Add <span class="text-primary">Room</span></h2>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary btn-custom">Add Room</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .card-custom {
+            border: 1px solid #ddd;
+            width: 400px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+           
+            margin: auto;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .btn-custom {
+            background-color: var(--blue); /* Replace with your color variable if defined */
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+            text-decoration: none;
+            position: relative; /* Required for slide effect */
+            overflow: hidden; /* Hide the sliding effect overflow */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Initial shadow */
+        }
+
+        .btn-custom:hover {
+            color: var(--blue); /* Change text color on hover */
+            transform: translateY(-10px); /* Move button up more on hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+            border: 1px solid #D75192; /* Pink border on hover */
+        }
+
+        
+        .text-primary {
+            color: var(--blue); /* Primary color */
+        }
+    </style>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Edit_Room{% endblock title %}
+{% block content %}
+    <h2 class="text-center mt-5 mb-3">Update</u><span class="text-primary">Rooms Details</span></h2>
+
+    <section class="services py-5 ">
+        <div class="container mx-auto"> <!-- Centering the container -->
+            <div class="row justify-content-center"> <!-- Centering the row -->
+                <div class="col-sm-12 col-md-4 col-lg-4 col-12">
+                    <div class="card mb-5">
+
+                        <div class="card-body text-center"> <!-- Centering the card content -->
+                            <form method="post" class="my-auto"> <!-- Adding custom class for vertical centering -->
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <button type="submit" class="btn btn-primary">Update Room</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+

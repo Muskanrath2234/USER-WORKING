@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .login-container {
+            display: flex;
+            width: 800px;
+            height: 500px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .login-image {
+            width: 50%;
+            background: url('{% static "img/adminlogin.png" %}') no-repeat center center;
+            background-size: cover;
+        }
+
+        .login-form {
+            width: 50%;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-form h2 {
+            margin-bottom: 10px;
+        }
+
+        .welcome-message {
+            margin-bottom: 20px;
+            color: #0C5FCD;
+            font-size: 20px;
+        }
+
+        .login-form ul {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+        }
+
+        .login-form li {
+            margin-bottom: 20px;
+        }
+
+        .login-form label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-align: left;
+            color: #555;
+        }
+
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        .login-form input[type="text"]:focus,
+        .login-form input[type="password"]:focus {
+            border-color: #0C5FCD;
+        }
+
+        .login-form select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .login-form button.signup-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #0C5FCD;
+            font-weight: bold;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .login-form button.signup-button:hover {
+            background-color: #0948a6;
+            transform: scale(1.05);
+        }
+
+        .login-form a.login-link {
+            text-decoration: none;
+            color: #0C5FCD;
+            margin-top: 20px;
+            display: inline-block;
+            transition: color 0.3s;
+        }
+
+        .login-form a.login-link:hover {
+            color: #0948a6;
+        }
+
+        .login-info {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .login-info i {
+            margin-right: 10px;
+            color: #0C5FCD;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-image"></div>
+        <div class="login-form">
+            <h2>Login</h2>
+            <div class="welcome-message">Welcome to PWE Admin Panel</div>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <ul>
+                    <li>
+                        <label for="role">Login as</label>
+                        <select name="role" id="role">
+                            <option value="admin">Admin</option>
+                            <option value="user">User</option>
+                        </select>
+                    </li>
+                    <li class="name">
+                        <label for="username">Username</label>
+                        <input type="text" name="username" id="username" class="username-input" placeholder="Username">
+                    </li>
+                    <li class="pass">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" class="pass-input" placeholder="Password">
+                    </li>
+                    <button class="signup-button">Log in</button>
+                </ul>
+            </form>
+            <div class="login-info">
+                <i class='bx bx-check'></i> Manage your PG effortlessly
+                <br>
+                <i class='bx bx-check'></i> Connect with users seamlessly
+                <br>
+                <i class='bx bx-check'></i> Ensure secure and smooth operations
+            </div>
+        </div>
+    </div>
+</body>
+</html>

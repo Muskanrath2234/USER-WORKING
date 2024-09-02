@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block extra_css %}
+<style>
+    .content-section {
+        padding: 20px;
+        max-width: 600px;
+        margin: auto;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group button {
+        font-size: 16px;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+
+    .btn-outline-danger {
+        border-color: #dc3545;
+        color: #dc3545;
+        background-color: transparent;
+    }
+
+    .btn-outline-danger:hover {
+        background-color: #dc3545;
+        color: #fff;
+    }
+
+    .btn-outline-secondary {
+        border-color: #6c757d;
+        color: #6c757d;
+        background-color: transparent;
+    }
+
+    .btn-outline-secondary:hover {
+        background-color: #6c757d;
+        color: #fff;
+    }
+
+    legend {
+        font-size: 20px;
+        font-weight: bold;
+        color: #343a40;
+        padding-bottom: 10px;
+    }
+
+    h2 {
+        font-size: 18px;
+        color: #343a40;
+        margin-bottom: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="content-section">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Delete Post</legend>
+            <h2>Are you sure you want to delete the post "{{ object.title }}"?</h2>
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-danger" type="submit">Yes, Delete</button>
+            <a class="btn btn-outline-secondary" href="{% url 'post-detail' object.pk %}">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

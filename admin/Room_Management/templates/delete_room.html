@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Delete_Room{% endblock title %}
+{% block content %}
+    <h1>Delete Room</h1>
+    <p>Are you sure you want to delete room "{{ room.room_number }}"?</p>
+    <form action="{% url 'delete_room' room.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+{% endblock content %}

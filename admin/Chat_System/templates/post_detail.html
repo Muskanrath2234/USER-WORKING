@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_css %}
+<style>
+    .media.content-section {
+        padding: 20px;
+        max-width: 800px;
+        margin: auto;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .article-img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+
+    .media-body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .article-metadata {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+    .article-metadata p {
+        font-weight: bold;
+        margin: 0;
+        text-transform: uppercase; /* Make author's name uppercase */
+        color: #1c1e21;
+    }
+
+    .article-metadata small {
+        color: #606770;
+        margin-top: 5px;
+    }
+
+    .btn {
+        border-radius: 5px;
+    }
+
+    .btn-secondary {
+        background-color: #007bff; /* Blue color for Update button */
+        border: none;
+        color: #fff;
+        padding: 5px 10px;
+        font-size: 16px;
+    }
+
+    .btn-secondary:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border: none;
+        color: #fff;
+        padding: 5px 10px;
+        font-size: 16px;
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333;
+    }
+
+    .article-title {
+        font-size: 24px;
+        color: #343a40;
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+
+    .article-description {
+        font-size: 16px;
+        line-height: 1.5;
+        color: #495057;
+    }
+
+    .article-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        margin-top: 20px;
+        border-radius: 8px;
+    }
+    .mod{
+        margin-top:20px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<article class="media content-section">
+    {% comment %} <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}" alt="Author's Image"> {% endcomment %}
+    <img class="rounded-circle article-img" src="{% static 'img/adminimg.png' %}" alt="Author's Image">
+    <div class="media-body">
+        <div class="article-metadata">
+            <p class="mr-2">{{ object.author }}</p>
+            <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+            {% if object.author == user %}
+            
+            {% endif %}
+        </div>
+        <h2 class="article-title">{{ object.title }}</h2>
+        <p class="article-description">{{ object.description }}</p>
+        {% if object.image %}
+        <img class="article-image" src="{{ object.image.url }}" alt="{{ object.title }}">
+        {% endif %}
+    </div>
+    <div class='mod'>
+        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
+        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+    </div>
+</article>
+
+{% endblock %}

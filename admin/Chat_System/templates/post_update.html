@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+    /* General Container Styling */
+    .content-section {
+        padding: 20px;
+        max-width: 800px;
+        margin: auto;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Form Group Styling */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    /* Form Label Styling */
+    .form-group label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    /* Input and File Input Styling */
+    .form-control, .form-control-file {
+        border-radius: 5px;
+        border: 1px solid #ced4da;
+    }
+
+    /* Current Image Styling */
+    .current-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+
+    /* Button Styling */
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }
+</style>
+
+<div class="content-section">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Update Post</legend>
+            
+            <!-- Title Input -->
+            <div class="form-group">
+                <label for="id_title">Title:</label>
+                <input type="text" class="form-control" id="id_title" name="title" value="{{ form.title.value }}" required>
+            </div>
+            
+            <!-- Description Input -->
+            <div class="form-group">
+                <label for="id_description">Description:</label>
+                <textarea class="form-control" id="id_description" name="description" rows="5" required>{{ form.description.value }}</textarea>
+            </div>
+
+            <!-- Image Input -->
+            <div class="form-group">
+                <label for="id_image">Image:</label>
+                <input type="file" class="form-control-file" id="id_image" name="image">
+                {% if object.image %}
+                <img src="{{ object.image.url }}" alt="Current Image" class="current-image mt-2">
+                {% endif %}
+            </div>
+        </fieldset>
+        
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">Save Changes</button>
+            <a class="btn btn-secondary" href="{% url 'post-detail' object.pk %}">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,251 @@
+{% extends 'base.html' %}
+{% block title %} Edit_Profile{% endblock %}
+
+{% block content %}
+<style>
+
+.main-container {
+    width: 60%;
+    background-color: white;
+    margin: 10% auto;
+    border-radius: 2em;
+    padding: 2em 2em;
+
+}
+
+.container {
+    display: flex;
+    margin: 2em 2em;
+    align-items: center;
+    justify-content: space-between;
+      flex-direction: column;
+}
+
+
+#id_profile_img {
+    width: 70% - 1.6em;
+    padding: .8em .8em;
+    margin-top: 1.5em;
+    width: 60%;
+    padding: .8em;
+    background-color: #AA336A;;
+    border: none;
+    border-radius: 3px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+.user-profile-form-container {
+    width: 60%;
+    margin: 2em;
+    padding: 0;
+}
+
+.user-content-container ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+
+}
+
+.user-content-container ul  li {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+
+.user-profile-form-container label {
+    font-size: larger;
+    width: 100%;
+    margin: .5em auto .3em 0;
+}
+
+.user-profile-form-container input {
+    width: 100%-14px;
+    height: 2.5em;
+    border-radius: 3px;
+    border: solid #707070 1px;
+    margin: .1em 0;
+    padding: 0 7px;
+}
+
+.profile-save-button {
+    margin-top: 1.5em;
+    width: 40%;
+    padding: .8em;
+    background-color: #AA336A;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    color:white;
+}
+
+
+@media only screen and (max-width: 1200px) {
+    .container {
+        display: block;
+        margin-left: .1em;
+        margin-right: .1em;
+    }
+
+    .profile-photo-container {
+        width: 100%;
+    }
+  }
+
+
+.notification-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.notification {
+    padding: .8em 5%;
+    background-color: rgba(64, 243, 243, 0.808);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60%;
+    border-radius: 5px;
+}
+
+
+
+
+.profile-photo-container {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-photo-container img {
+    width: 10em;
+    height: 10em;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: .7em auto;
+}
+.profile-page-heading {
+    font-size: 20px; /* Font size */
+    font-weight: bold; /* Bold font weight */
+    text-align: center; /* Center align text */
+    margin-bottom: 20px; /* Bottom margin */
+    color: dark; /* Text color */
+      flex-direction: column;
+}
+
+
+
+
+
+</style>
+
+
+
+<main class="main-container">
+    <form class="container" action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="profile-photo-container profile-photo-form-container">
+            <p class="profile-page-heading">Edit your profile</p>
+            <img src="{{ user.profile.profile_img.url }}" alt="user-image" width="" srcset="">
+            {{ form.profile_img }}
+        </div>
+
+        <div class="user-content-container user-profile-form-container">
+            <ul>
+                <li class="name">
+                    <label for="id_name">Your Name</label>
+                    {{ form.name.errors }}
+                    {{ form.name }}
+                </li>
+                <li class="address">
+                    <label for="id_address">Address</label>
+                    {{ form.address.errors }}
+                    {{ form.address }}
+                </li>
+                <li class="profession">
+                    <label for="id_profession">Profession</label>
+                    {{ form.profession.errors }}
+                    {{ form.profession }}
+                </li>
+                <li class="associated-with">
+                    <label for="id_assosiat_with">Associated with</label>
+                    {{ form.assosiat_with.errors }}
+                    {{ form.assosiat_with }}
+                </li>
+                <li class="college-name">
+                    <label for="id_college_name">College Name</label>
+                    {{ form.college_name.errors }}
+                    {{ form.college_name }}
+                </li>
+                <li class="coaching-name">
+                    <label for="id_coaching_name">Coaching Name</label>
+                    {{ form.coaching_name.errors }}
+                    {{ form.coaching_name }}
+                </li>
+                <li class="office-name">
+                    <label for="id_office_name">Office Name</label>
+                    {{ form.office_name.errors }}
+                    {{ form.office_name }}
+                </li>
+                <li class="other">
+                    <label for="id_other">Other</label>
+                    {{ form.other.errors }}
+                    {{ form.other }}
+                </li>
+                <li class="photo">
+                    <label for="id_photo">Photo</label>
+                    {{ form.photo.errors }}
+                    {{ form.photo }}
+                </li>
+                <li class="adhar-card">
+                    <label for="id_adhar_card">Adhar Card</label>
+                    {{ form.adhar_card.errors }}
+                    {{ form.adhar_card }}
+                </li>
+                <li class="phone-number">
+                    <label for="id_phone_number">Phone Number</label>
+                    {{ form.phone_number.errors }}
+                    {{ form.phone_number }}
+                </li>
+                <li class="father-contact-number">
+                    <label for="id_father_contact_number">Father's Contact Number</label>
+                    {{ form.father_contact_number.errors }}
+                    {{ form.father_contact_number }}
+                </li>
+                <li class="date-of-birth">
+                    <label for="id_date_of_birth">Date of Birth</label>
+                    {{ form.date_of_birth.errors }}
+                    {{ form.date_of_birth }}
+                </li>
+                <li class="date-of-joining">
+                    <label for="id_date_of_joing">Date of Joining</label>
+                    {{ form.date_of_joing.errors }}
+                    {{ form.date_of_joing }}
+                </li>
+            </ul>
+            <button type="submit" class="profile-save-button">Save</button>
+        </div>
+    </form>
+</main>
+
+<script>
+    var id_name = document.getElementById('id_name');
+    var id_address = document.getElementById('id_address');
+    var id_profession = document.getElementById('id_profession');
+    id_name.placeholder = 'Your Name';
+    id_address.placeholder = 'Address';
+    id_profession.placeholder = 'Profession';
+</script>
+    <!-- Your home page content goes here -->
+{% endblock %}

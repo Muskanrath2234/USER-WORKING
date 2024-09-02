@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+{% block extra_css %}
+<style>
+
+/* Base styling for the main content */
+main {
+    padding: 20px;
+    font-family: 'Playfair Display', serif;
+}
+
+.welcome {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.welcome h1 {
+    font-size: 2em;
+    color: #333;
+}
+
+.welcome p {
+    font-size: 1.2em;
+    color: #666;
+}
+
+/* Styling for the stats section */
+.stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.card h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card p {
+    font-size: 1em;
+    color: #777;
+}
+
+/* Hover effect for cards */
+.card:hover {
+    background-color: #f1f1f1;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+</style>
+{% endblock%}
+{% block content %}
+<main>
+    <section class="welcome">
+        <h1>Welcome to the Admin Dashboard</h1>
+        <p>Manage your application efficiently and effectively.</p>
+    </section>
+
+    <section class="stats">
+        <div class="card">
+            <h2>Users</h2>
+            <p>Manage all users from here</p>
+        </div>
+        <div class="card">
+            <h2>Rooms</h2>
+            <p>View and manage rooms</p>
+        </div>
+        <div class="card">
+            <h2>Communication</h2>
+            <p>Communicate with users</p>
+        </div>
+        <div class="card">
+            <h2>Support</h2>
+            <p>Handle support tickets and leave requests</p>
+        </div>
+    </section>
+</main>
+{% endblock %}

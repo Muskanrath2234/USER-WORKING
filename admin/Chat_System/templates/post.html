@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+<style>
+    .post_view_container {
+        padding: 20px;
+        max-width: 800px;
+        margin: auto;
+       
+    }
+
+    .postview {
+        margin-bottom: 20px;
+        margin-top: 5px;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #f8f9fa;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        border: 1px solid #dddfe2;
+        display: flex;
+        align-items: flex-start;
+        height: 620px;
+        width: 100%;
+    }
+
+    .post-image {
+        flex-shrink: 0;
+        width: 100px; /* Adjust width as needed */
+        height: 100px; /* Adjust height as needed */
+        border-radius: 5px;
+        margin-right: 15px;
+        object-fit: cover; /* Ensures the image covers the box without distortion */
+    }
+
+    .post-content {
+        margin-top:20px;
+        flex-grow: 1;
+    }
+
+    .article-metadata {
+        margin-bottom: 10px;
+    }
+
+    .article-title {
+       
+        text-decoration: none;
+        color: #343434;
+        font-weight: 700;
+    }
+
+    .article-description {
+        margin-top:20px;
+        text-decoration: none;
+        color: #343434;
+    }
+
+    .article-title:hover {
+        text-decoration: underline;
+    }
+
+    .author-name {
+        text-transform: uppercase; /* Make author's name uppercase */
+        font-weight: bold;
+        color: #1775F1;
+    }
+
+    .post-date {
+        font-size: 14px;
+        color: #606770;
+    }
+    .postinner{
+        margin-top:36px0px;
+    }
+    .article-image{
+        margin-left:50px;
+        margin-top:40px;
+        width:300px;
+        height:200px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="post_view_container">
+    {% for post in posts %}
+    <!-- All posts have the same class "post" -->
+    <div class="postview">
+        <!-- Use default image if profile image is not available -->
+        <img class="post-image" 
+             src="{% if post.author.profile.image %}{{ post.author.profile.image.url }}{% else %}{% static 'img/adminimg.png' %}{% endif %}" 
+             alt="Avatar">
+        <div class="post-content">
+            <div class="article-metadata">
+                <!-- Author's name in uppercase -->
+                <h4 class="author-name"><a href="{% url 'author-profile' post.author.username %}">{{ post.author }}</a></h4>
+                <!-- Date link -->
+                <p class="post-date"><a href="{% url 'posts-by-date' post.date_posted|date:'Y' post.date_posted|date:'m' post.date_posted|date:'d' %}">{{ post.date_posted|date:"F d, Y" }}</a></p>
+                <hr>
+                
+            </div>
+            <div class="postinner">
+            <h3><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h3>
+            <p class="article-description">{{ post.description }}</p>
+            {% if post.image %}
+            <!-- Wrap image with anchor tag linking to full-size image -->
+            <a href="{{ post.image.url }}" target="_blank">
+                <img class="article-image" src="{{ post.image.url }}" alt="{{ post.title }}">
+            </a>
+        </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

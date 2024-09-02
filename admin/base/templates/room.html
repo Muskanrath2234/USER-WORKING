@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block breadcrumb_items %}
+    <!-- Add specific breadcrumb items for this page -->
+    <li class="breadcrumb-item active" aria-current="page">Room_List</li>
+{% endblock %}
+{% block content %}
+<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title text-center text-uppercase" style="color: #FD7792;">Room List</h6>
+            <h1 class="mb-5">Luxury <span class="text-uppercase" style="color: #FD7792;"> Room List</span></h1>
+        </div>
+<div class="container mt-5">
+    <div class="row">
+        {% for room in rooms %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <h3>Room {{ room.room_number }}</h3>
+                {% if room.image %}
+                <img src="{{ room.image.url }}" alt="Room image" style="max-width: 100%; height: auto; border-radius: 8px;">
+                {% endif %}
+                <p>Type: {{ room.get_room_type_display }}</p>
+                <p>Capacity: {{ room.capacity }}</p>
+                <p>Price per month: ₹{{ room.price_per_month }}</p>
+                <p>Amenities: {{ room.amenities }}</p>
+                <a href="{% url 'room_detail' room.id %}" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #FD7792; color: white; border-radius: 4px; text-decoration: none;">View Details</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
